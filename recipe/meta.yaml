@@ -1,5 +1,5 @@
 {% set name = "openssl" %}
-{% set version = "1.0.2p" %}
+{% set version = "1.1.1a" %}
 
 package:
   name: {{ name|lower }}
@@ -8,10 +8,10 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: http://www.openssl.org/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 50a98e07b1a89eb8f6a99477f262df71c6fa7bef77df4dc83025a2845c827d00
+  sha256: fc20130f8b7cbd2fb918b2f14e2f429e109c31ddd0fb38fc5d71d9ffed3f9f41
 
 build:
-  number: 1002
+  number: 1000
   no_link: lib/libcrypto.so.1.0.0        # [linux]
   no_link: lib/libcrypto.1.0.0.dylib     # [osx]
   has_prefix_files:                      # [unix]
@@ -28,6 +28,7 @@ requirements:
     - {{ compiler('c') }}
     - perl
     - make  # [unix]
+    - nasm  # [win]
   # Empty host section to ensure that this is identified as cb3
   host:
   run:
@@ -46,7 +47,7 @@ about:
   license_family: Apache
   summary: OpenSSL is an open-source implementation of the SSL and TLS protocols
   dev_url: https://github.com/openssl/openssl
-  doc_url: https://www.openssl.org/docs/man1.0.2/
+  doc_url: https://www.openssl.org/docs/man1.1.1/
 
 extra:
   recipe-maintainers:
